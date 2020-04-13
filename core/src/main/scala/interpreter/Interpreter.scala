@@ -157,6 +157,7 @@ object Interpreter {
   }
 
   def evaluate(e: Tree)(implicit rc: RunContext): Tree = {
+    println(Printer.asString(e))
     if (e.isValue) e
     else evaluate(smallStep(e))
   }
