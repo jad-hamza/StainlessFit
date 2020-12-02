@@ -160,9 +160,18 @@ object Interpreter {
     }
   }
 
+  var i = 0
+
   def evaluate(e: Tree)(implicit rc: RunContext): Tree = e match {
     case Error(_, _) => e
     case tree if tree.isValue => tree
-    case _ => evaluate(smallStep(e))
+    case _ =>
+      println(e.asString)
+      println("================")
+      i += 1
+      if (i < 110)
+        evaluate(smallStep(e))
+      else
+        e
   }
 }
